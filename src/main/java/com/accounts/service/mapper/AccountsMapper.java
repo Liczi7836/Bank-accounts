@@ -12,7 +12,8 @@ public class AccountsMapper {
                 accountsDto.getId(),
                 accountsDto.getNrb(),
                 accountsDto.getCurrency(),
-                accountsDto.getAvailableFunds());
+                accountsDto.getAvailableFunds()
+                );
     }
 
     public AccountsDto mapToAccountsDto(Accounts accounts){

@@ -1,19 +1,20 @@
 package com.accounts.service.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Entity(name = "customer")
+@Setter
 public class CustomerDto {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+        public CustomerDto(Long id) {
+                this.id = id;
+        }
 
-    //private List<Accounts> accounts;
+        public Long id;
+
+        public List<AccountsDto> accountsDto = new ArrayList<>();
 }
