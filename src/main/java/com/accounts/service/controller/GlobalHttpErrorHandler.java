@@ -11,6 +11,11 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(AccountsNotFoundException.class)
     public ResponseEntity<String> handleAccountsNotFoundException(AccountsNotFoundException exception){
-        return new ResponseEntity<>("Accounts with given customer id doesn't exist", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Accounts with given id doesn't exist", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<String> handleCustomerNotFoundException(CustomerNotFoundException exception){
+        return new ResponseEntity<>("Customer with given id doesn't exist", HttpStatus.BAD_REQUEST);
     }
 }

@@ -2,7 +2,10 @@ package com.accounts.service.controller;
 
 import com.accounts.service.domain.Accounts;
 import com.accounts.service.domain.AccountsDto;
+import com.accounts.service.domain.Customer;
+import com.accounts.service.domain.CustomerDto;
 import com.accounts.service.mapper.AccountsMapper;
+import com.accounts.service.mapper.CustomerMapper;
 import com.accounts.service.services.DbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ public class AccountsController {
 
     private final DbService dbService;
     private final AccountsMapper accountsMapper;
+    private final CustomerMapper customerMapper;
 
     public List<AccountsDto> getAccounts(){
         return new ArrayList<>();
@@ -29,13 +33,10 @@ public class AccountsController {
         return ResponseEntity.ok(accountsMapper.mapToAccountsDto(dbService.getAccountBy(id)));
     }
 
-    public void deleteAccount(Long id){
+    @GetMapping(value = "/customer/{id}")
+    public ResponseEntity<CustomerDto> getCustomer(@PathVariable Long id) throws CustomerNotFoundException{
+        return ResponseEntity.ok(customerMapper.mapToCustomerDto(dbService.getCustomerBy(id)));
     }
 
-    public AccountsDto updateAccount(AccountsDto accountsDto){
-        return new AccountsDto(2L, "2222", "PLN", 1500.00);
-    }
-
-    public void createAccount(AccountsDto accountsDto){}
 
 }
