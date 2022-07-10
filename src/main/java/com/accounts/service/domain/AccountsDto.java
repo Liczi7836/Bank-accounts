@@ -1,11 +1,12 @@
 package com.accounts.service.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountsDto {
 
     private Long id;

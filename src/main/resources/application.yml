@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: accounts
+  profiles:
+    active: production
+  datasource:
+    url: ${accounts.datasource.url}
+    username: ${accounts.datasource.username}
+    password: ${accounts.datasource.password}
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: ${accounts.jpa.showsql}
+    database: ${accounts.jpa.database}
+    hibernate:
+      ddl-auto: ${accounts.jpa.hibernate.ddl-auto}
+
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# ACTUATOR INFO
+info:
+  app:
+    name: "Accounts"
+    version: "0.0.1"
+    profile: ${spring.profiles.active}
+  serverInfo:
+    port: ${server.port}
+
+application:
+  allow-get-accounts: ${accounts.allow-get-accounts}
