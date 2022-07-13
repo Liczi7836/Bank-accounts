@@ -14,6 +14,7 @@ spring:
     hibernate:
       ddl-auto: ${accounts.jpa.hibernate.ddl-auto}
 
+
 management:
   endpoint:
     info:

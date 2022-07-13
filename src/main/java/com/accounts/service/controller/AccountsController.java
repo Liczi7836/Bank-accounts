@@ -45,7 +45,7 @@ public class AccountsController {
 
     @GetMapping(value = "/customer/{id}")
     public ResponseEntity<CustomerDto> getCustomer(@PathVariable Long id) throws CustomerNotFoundException{
-        if(!allowGetAccounts){
+        if(!Boolean.valueOf(allowGetAccounts)){
             log.info("Getting accounts is disabled");
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Getting accounts is disabled");
         }
