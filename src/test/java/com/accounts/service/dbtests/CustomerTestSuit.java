@@ -24,7 +24,7 @@ public class CustomerTestSuit {
         Accounts accounts = new Accounts(
                 1421L, "72249000059957936727967706", "PLN", 6525.11
         );
-        Customer customer = new Customer(12345L);
+        Customer customer = new Customer(12345L, "Jan", "Kowalski");
         customer.getAccounts().add(accounts);
         accounts.setCustomer(customer);
 

@@ -12,10 +12,14 @@ import java.util.List;
 public class Customer {
 
     private Long id;
+    private String firstName;
+    private String lastName;
     private List<Accounts> accounts = new ArrayList<>();
 
-    public Customer(Long id) {
+    public Customer(Long id, String firstName, String lastName) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Customer() {
@@ -44,5 +48,23 @@ public class Customer {
 
     public void setAccounts(List<Accounts> accounts) {
         this.accounts = accounts;
+    }
+
+    @Column(name = "firstName")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Column(name = "lastName")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

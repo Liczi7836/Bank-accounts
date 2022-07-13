@@ -18,7 +18,7 @@ public class CustomerMapper {
             Accounts accounts = new Accounts(accountsDto.getId(), accountsDto.getNrb(), accountsDto.getCurrency(), accountsDto.getAvailableFunds());
             accountsList.add(accounts);
         }
-        Customer customer = new Customer(customerDto.getId());
+        Customer customer = new Customer(customerDto.getId(), customerDto.getFirstName(), customerDto.getLastName());
         customer.setAccounts(accountsList);
         return customer;
     }
@@ -29,7 +29,7 @@ public class CustomerMapper {
             AccountsDto accountsDto = new AccountsDto(accounts.getId(), accounts.getNrb(),accounts.getCurrency(),accounts.getAvailableFunds());
             accountsDtoList.add(accountsDto);
         }
-        CustomerDto customerDto = new CustomerDto(customer.getId());
+        CustomerDto customerDto = new CustomerDto(customer.getId(), customer.getFirstName(), customer.getLastName());
         customerDto.setAccountsDto(accountsDtoList);
         return customerDto;
     }
