@@ -34,10 +34,13 @@ dependencies {
     implementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
 	implementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
 	compileOnly 'org.projectlombok:lombok'
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 }
 
 dependencyManagement {

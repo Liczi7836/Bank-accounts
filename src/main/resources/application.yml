@@ -35,3 +35,9 @@ info:
 
 application:
   allow-get-accounts: ${accounts.allow-get-accounts}
+
+eureka:
+  client: ${eureka-client}
+
+server:
+  port: 9998

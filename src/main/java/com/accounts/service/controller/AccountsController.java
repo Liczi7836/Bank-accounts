@@ -40,6 +40,7 @@ public class AccountsController {
 
     @GetMapping(value = "{id}")
     public ResponseEntity<AccountsDto> getAccount(@PathVariable Long id) throws AccountsNotFoundException{
+
         return ResponseEntity.ok(accountsMapper.mapToAccountsDto(dbService.getAccountBy(id)));
     }
 
