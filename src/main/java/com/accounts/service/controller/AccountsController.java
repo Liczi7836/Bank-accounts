@@ -1,9 +1,6 @@
 package com.accounts.service.controller;
 
-import com.accounts.service.domain.Accounts;
-import com.accounts.service.domain.AccountsDto;
-import com.accounts.service.domain.Customer;
-import com.accounts.service.domain.CustomerDto;
+import com.accounts.service.domain.*;
 import com.accounts.service.mapper.AccountsMapper;
 import com.accounts.service.mapper.CustomerMapper;
 import com.accounts.service.services.DbService;
@@ -51,6 +48,13 @@ public class AccountsController {
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Getting accounts is disabled");
         }
         return ResponseEntity.ok(customerMapper.mapToCustomerDto(dbService.getCustomerBy(id)));
+    }
+
+    @GetMapping(value = "/customer/accounts/{id}")
+    public ResponseEntity<AccountsResponse> getAccounts(@PathVariable Long id){
+        List<AccountsDto> accounts = accountsMapper.mapToListAccountsDto(dbService.getAccountByCustomerId(id));
+        AccountsResponse accountsResponse = new AccountsResponse(accounts);
+        return ResponseEntity.ok(accountsResponse);
     }
 
 

@@ -30,5 +30,9 @@ public class DbService {
         return customerRepository.findById(id).orElseThrow(CustomerNotFoundException::new);
     }
 
+    public List<Accounts> getAccountByCustomerId(Long id) {
+        return accountsRepository.findAllByCustomer_Id(id);
+    }
+
 
 }

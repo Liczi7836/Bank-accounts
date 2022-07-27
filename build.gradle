@@ -1,8 +1,27 @@
+import org.springframework.cloud.contract.verifier.config.TestFramework
+
+
+buildscript {
+	repositories {
+		mavenCentral()
+		mavenLocal()
+	}
+
+	dependencies {
+		classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:3.1.3'
+	}
+}
+
+
 plugins {
 	id 'org.springframework.boot' version '2.7.1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
+
+
+apply plugin: 'spring-cloud-contract'
+apply plugin: 'maven-publish'
 
 group = 'com.accounts'
 version = '0.0.1-SNAPSHOT'
@@ -15,6 +34,7 @@ configurations {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -35,12 +55,17 @@ dependencies {
 	implementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'junit:junit:4.13.1'
 
 	compileOnly 'org.projectlombok:lombok'
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+
+	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
+	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+	testImplementation 'com.h2database:h2:1.4.200'
 }
 
 dependencyManagement {
@@ -49,6 +74,19 @@ dependencyManagement {
 	}
 }
 
+contracts {
+	testFramework = TestFramework.JUNIT5
+	packageWithBaseClasses = 'com.kodilla.accounts'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+task stubsJar(type: Jar) {
+	classifier = "stubs"
+	into("META-INF/${project.group}/${project.name}/${project.version}/mappings") {
+		include('**/*.*')
+		from("${project.buildDir}/generated-snippets/stubs")
+	}
 }

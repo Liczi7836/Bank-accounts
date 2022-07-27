@@ -18,4 +18,6 @@ public interface AccountsRepository extends CrudRepository<Accounts, Long> {
 
     @Override
     Accounts save(Accounts accounts);
+
+    List<Accounts> findAllByCustomer_Id(Long id);
 }
